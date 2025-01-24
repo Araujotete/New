@@ -1,0 +1,27 @@
+package Projeto.Integracao.demo
+
+import com.exemplo.springbootdemo.model.Usuario;
+import com.exemplo.springbootdemo.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/usuarios")
+public class UsuarioController {
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @GetMapping
+    public List<Usuario> listarUsuarios() {
+        return usuarioService.listarUsuarios();
+    }
+
+    @PostMapping
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) {
+        Usuario novoUsuario = usuarioService.salvarUsuario(usuario);
+        return ResponseEntity.ok(novoUsuario);
+    }
+}

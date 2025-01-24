@@ -1,0 +1,22 @@
+package Projeto.Integracao.demo;
+
+import com.exemplo.springbootdemo.model.Usuario;
+import com.exemplo.springbootdemo.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UsuarioServiço {
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    public List<Usuario> listarUsuarios() {
+        return usuarioRepository.findAll();
+    }
+
+    public Usuario salvarUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
+}
